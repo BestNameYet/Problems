@@ -1,50 +1,53 @@
 package main;
 
 import java.io.*;
-import java.lang.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Solution {
 	public static void main(String[] args) throws IOException{
-		System.out.println("Start");
+		System.out.println("Solution running...");
 		
+		int result = 0;
 		int arraySize = 612;
-		System.out.println("Array Size: "+arraySize);
-		Random random = new Random();
-		int score = 0;
+		int iterations = 1000000;
 		ArrayList<Integer> baseArray = new ArrayList<Integer>(arraySize);
+		Random randomIntegerGenerator = new Random();
 				
 		for(int i=0; i<arraySize;i++) {
 			baseArray.add(new Integer(i));
 		} 
 		
-		int iterations = 1000000;
 		
 		for(int i=0; i<iterations; i++) {
-			ArrayList<Integer> decreasingArray= new ArrayList<Integer>();
-			ArrayList<Integer> increasingArray= new ArrayList<Integer>();
-			decreasingArray.addAll(baseArray);
+			ArrayList<Integer> workingArray= new ArrayList<Integer>(baseArray.size());
+			workingArray.addAll(baseArray);
 			
+			int randomIndex = randomIntegerGenerator.nextInt(workingArray.size());
+			Integer formerValue = workingArray.get(randomIndex);
+			Integer latterValue = null;
+			workingArray.remove(randomIndex);
 					
-			while(decreasingArray.size()>0) {
-				int nextRandom = random.nextInt(decreasingArray.size());
-				Integer nextRemoved = decreasingArray.get(nextRandom);
-				decreasingArray.remove(nextRandom);
-				increasingArray.add(nextRemoved);
-			}
-			
-			for(int j=0; j<increasingArray.size()-1;j++) {
-				Integer former = increasingArray.get(j);
-				Integer latter = increasingArray.get(j+1);
-				Integer diff = latter - former;
+			while(workingArray.size()>0) {
+								
+				randomIndex = randomIntegerGenerator.nextInt(workingArray.size());
+				latterValue = workingArray.get(randomIndex);
+				workingArray.remove(randomIndex);
+				
+				Integer diff = latterValue - formerValue;
 				if(diff.equals(Integer.valueOf(1))) {
-					score = score + 1;
+					result = result + 1;
 					break;
 				}
+				else {
+					formerValue = latterValue;
+				}
+				
 			}
+			
+		
 		}
-
-		System.out.println("Result of "+iterations+" interations: "+score);
+		System.out.println("Array Size: "+arraySize);
+		System.out.println("Result of "+iterations+" interations: "+result);
 	}
 }
