@@ -18,7 +18,7 @@ public class Solution {
 		Integer nextValue = null;
 		
 		ArrayList<Integer> baseArray = new ArrayList<Integer>(arraySize);
-		ArrayList<Integer> workingArray = new ArrayList<Integer>(baseArray.size());
+		ArrayList<Integer> workingArray = new ArrayList<Integer>(arraySize);
 		
 		Random randomIntegerGenerator = new Random();
 				
