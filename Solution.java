@@ -6,20 +6,23 @@ import java.util.Random;
 
 public class Solution {
 	public static void main(String[] args) throws IOException{
-		System.out.println("Solution running...");
-		
 		long startTime = System.currentTimeMillis();
-		int result = 0;
+		System.out.println("Solution running...");
+			
 		int arraySize = 612;
 		int iterations = 1000000;
 		int randomIndex = 0;
-		Integer currentValue;
-		Integer nextValue;
+		int result = 0;
+		
+		Integer currentValue = null;
+		Integer nextValue = null;
+		
 		ArrayList<Integer> baseArray = new ArrayList<Integer>(arraySize);
 		ArrayList<Integer> workingArray = new ArrayList<Integer>(baseArray.size());
+		
 		Random randomIntegerGenerator = new Random();
 				
-		for(int i=0; i<baseArray.size();i++) {
+		for(int i=0; i<arraySize;i++) {
 			baseArray.add(new Integer(i));
 		} 
 		
